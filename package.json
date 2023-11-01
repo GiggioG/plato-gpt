@@ -1,0 +1,23 @@
+{
+  "name": "platon",
+  "version": "1.0.0",
+  "description": "Plato gpt",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Gigo_G",
+    "SMG",
+    "Plato",
+    "Philosophy"
+  ],
+  "author": "Gigo_G",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "openai": "^4.0.0",
+    "ws": "^8.14.2"
+  }
+}
