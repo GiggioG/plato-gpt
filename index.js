@@ -8,8 +8,11 @@ import { randomUUID } from 'crypto';
 const openai = new OpenAI();
 
 const httpServer = http.createServer((req, res) => {
-    if (req.url == '/') {
+    if (req.url == '/' || req.url == "/index.html") {
         fs.createReadStream("public/index.html").pipe(res);
+    }else{
+        res.writeHead(404);
+        res.end(`<h1>Error 404</h1>Not Found.`);
     }
 });
 httpServer.listen(process.env.PORT || 8080);

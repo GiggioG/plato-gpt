@@ -6,6 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plato's chat</title>
     <link rel="stylesheet" href="https://cdn.metroui.org.ua/4.5.4/metro.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+        }
+
+        div[data-role=chat] {
+            max-width: 600px;
+        }
+    </style>
 </head>
 
 <body>
@@ -16,7 +26,7 @@
 
         let ws = null, chatDiv = null, waiting = null;
         function onChatCreate() {
-            ws = new WebSocket(`ws://${location.host}`);
+            ws = new WebSocket(`${location.protocol == "https:" ? "wss" : "ws"}://${location.host}`);
             ws.addEventListener("message", message => {
                 receiveMessage(message.data);
             });
@@ -30,12 +40,11 @@
                 avatar: platoPfp,
                 id: waiting
             };
-            debugger;
             chatDiv.updMessage(newMsg);
             waiting = null;
         }
         function onSend(msg) {
-            if(chatDiv == null){
+            if (chatDiv == null) {
                 chatDiv = Metro.getPlugin(`div[data-role=chat]`, `chat`);
 
                 /// patch bug
