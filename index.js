@@ -29,7 +29,6 @@ wss.on("connection", sock => {
     sock.on("message", async msg => {
         msg = msg.toString();
         sock.messages.push({ role: "user", content: msg });
-        sock.send(`...`);
 
         const completion = await openai.chat.completions.create({
             messages: sock.messages,
