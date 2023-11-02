@@ -1,5 +1,6 @@
 import http from 'http';
 import fs from 'fs';
+import url from 'url';
 import ws, { WebSocketServer } from 'ws';
 import 'dotenv/config'
 import OpenAI from "openai";
@@ -8,7 +9,8 @@ import { randomUUID } from 'crypto';
 const openai = new OpenAI();
 
 const httpServer = http.createServer((req, res) => {
-    if (req.url == '/' || req.url == "/index.html") {
+    let pathname = url.parse(req.url).pathname;
+    if (pathname == '/' || pathname == "/index.html") {
         fs.createReadStream("public/index.html").pipe(res);
     }else{
         res.writeHead(404);
